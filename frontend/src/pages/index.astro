@@ -1,16 +1,23 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import BtcPrice from '../components/BtcPrice.jsx';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Chocolabs - Crypto Tracker">
+	<main class="container">
+		<h1>CryptoTracker</h1>
+		<p>Real-time tracking for your investment portfolio</p>
+		
+		<BtcPrice client:load />
+	</main>
+</Layout>
+
+<style>
+	.container {
+		padding: 2rem;
+		font-family: system-ui, sans-serif;
+	}
+	h1 {
+		color: #2c3e50;
+	}
+</style>
