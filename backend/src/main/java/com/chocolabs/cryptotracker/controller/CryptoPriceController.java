@@ -18,7 +18,6 @@ public class CryptoPriceController {
 
     private final CryptoPriceService cryptoPriceService;
 
-    // Inyección de dependencias por constructor
     public CryptoPriceController(CryptoPriceService cryptoPriceService) {
         this.cryptoPriceService = cryptoPriceService;
     }

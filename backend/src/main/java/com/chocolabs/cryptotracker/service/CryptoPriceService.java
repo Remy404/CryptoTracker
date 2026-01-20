@@ -27,7 +27,7 @@ public class CryptoPriceService {
         }
 
         try {
-            String url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=mxn";
+            String url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
             
             ParameterizedTypeReference<Map<String, Map<String, Double>>> typeRef = 
                 new ParameterizedTypeReference<Map<String, Map<String, Double>>>() {};
@@ -39,7 +39,7 @@ public class CryptoPriceService {
             
             if (response != null && response.containsKey("bitcoin")) {
                 // 2. ACTUALIZAR ANTES DE RETORNAR (Importante)
-                lastPrice = response.get("bitcoin").get("mxn");
+                lastPrice = response.get("bitcoin").get("usd");
                 lastUpdateTime = LocalDateTime.now();
                 return lastPrice;
             }
