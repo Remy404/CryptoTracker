@@ -1,8 +1,11 @@
 package com.chocolabs.cryptotracker.controller;
 
 import com.chocolabs.cryptotracker.model.Transaction;
+import com.chocolabs.cryptotracker.repository.TransactionRepository;
 import com.chocolabs.cryptotracker.service.TransactionService;
 import org.springframework.web.bind.annotation.*;
+
+import com.chocolabs.cryptotracker.dto.Summary;
 
 import java.util.List;
 
@@ -25,6 +28,11 @@ public class TransactionController {
     @GetMapping
     public List<Transaction> getTransactions() {
         return service.getAllTransactions();
+    }
+
+    @GetMapping("/summary")
+    public List<Summary> getPortfolioSummary() {
+        return service.getPortfolioSummary();
     }
 
     @DeleteMapping("/{id}")

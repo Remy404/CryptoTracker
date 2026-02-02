@@ -3,6 +3,9 @@ package com.chocolabs.cryptotracker.service;
 import com.chocolabs.cryptotracker.model.Transaction;
 import com.chocolabs.cryptotracker.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
+
+import com.chocolabs.cryptotracker.dto.Summary;
+
 import java.util.List;
 
 @Service
@@ -15,7 +18,6 @@ public class TransactionService {
     }
 
     public Transaction saveTransaction(Transaction transaction) {
-        // Business logic can be added here later (e.g., validation)
         return repository.save(transaction);
     }
 
@@ -25,6 +27,9 @@ public class TransactionService {
 
     public void deleteTransaction(Long id) {
         repository.deleteById(id);
+    }
+    public List<Summary> getPortfolioSummary() {
+        return repository.getPortfolioSummary();
     }
 
     public Transaction updateTransaction(Long id, Transaction updatedData) {
