@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import BtcPrice from '../components/BtcPrice.jsx';
+import MarketOverview from '../components/MarketOverview.jsx';
 import AddTransaction from '../components/AddTransaction.jsx';
-import TransactionList from '../components/TransactionList.jsx';
+import PortfolioAccordion from '../components/PortfolioAccordion.jsx';
 ---
 
 <Layout title="Chocolabs - Crypto Tracker">
@@ -13,16 +13,20 @@ import TransactionList from '../components/TransactionList.jsx';
 		</header>
 		
 		<div class="dashboard-grid">
+			{/* Tarjeta de Precio Bitcoin (Izquierda) */}
 			<div class="price-wrapper glass-card">
-				<BtcPrice client:load />
+				<MarketOverview client:load />
 			</div>
 
+			{/* Formulario de Agregar (Derecha) */}
 			<div class="form-wrapper glass-card">
 				<AddTransaction client:load />
 			</div>
 
-			<div class="history-wrapper glass-card">
-				<TransactionList client:load />
+			{/* 2. AQUÍ VA EL PORTAFOLIO COMPLETO (Abajo, ancho completo) */}
+			<div class="portfolio-wrapper">
+				<h3 class="section-title">Your Assets</h3>
+				<PortfolioAccordion client:load />
 			</div>
 		</div>
 	</main>
@@ -35,44 +39,32 @@ import TransactionList from '../components/TransactionList.jsx';
 		padding: 4rem 1.5rem;
 	}
 
-	.header {
-		text-align: center;
-		margin-bottom: 4rem;
-	}
+	.header { text-align: center; margin-bottom: 3rem; }
+	h1 { font-size: 3.5rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
+	.subtitle { color: var(--text-muted); font-size: 1.1rem; margin-top: 0.5rem; }
+	
+	.section-title { color: #fff; margin-bottom: 1rem; font-weight: 600; font-size: 1.5rem; margin-top: 2rem;}
 
-	h1 {
-		font-size: 3.5rem;
-		font-weight: 800;
-		margin: 0;
-		letter-spacing: -1px;
-	}
-
-	.subtitle {
-		color: var(--text-muted);
-		font-size: 1.1rem;
-		margin-top: 0.5rem;
-	}
-
-	/* Configuración de la cuadrícula (Grid) */
+	/* GRID LAYOUT */
 	.dashboard-grid {
 		display: grid;
-		grid-template-columns: 1fr 1.5fr; /* Dos columnas de distinto ancho */
+		grid-template-columns: 1fr 1.5fr;
 		gap: 2rem;
+		align-items: start;
 	}
 
-	/* El historial ocupa las dos columnas en la fila de abajo */
-	.history-wrapper {
+	/* El acordeón ocupa todo el ancho abajo */
+	.portfolio-wrapper {
 		grid-column: span 2;
+		grid-column: 1 / -1; /* Esto fuerza a ocupar TODAS las columnas (Izquierda a Derecha) */
+		width: 100%;         /* Asegura que use el 100% del espacio disponible */
+		margin-top: 2rem;    /* Empuja hacia abajo para despegase del "Bitcoin Price" */
+		position: relative;  /* Ayuda con el z-index */
+		z-index: 10;
 	}
 
-	/* Ajuste para móviles: todo en una sola columna */
 	@media (max-width: 900px) {
-		.dashboard-grid {
-			grid-template-columns: 1fr;
-		}
-		.history-wrapper {
-			grid-column: span 1;
-		}
-		h1 { font-size: 2.5rem; }
+		.dashboard-grid { grid-template-columns: 1fr; }
+		.portfolio-wrapper { grid-column: span 1; }
 	}
 </style>

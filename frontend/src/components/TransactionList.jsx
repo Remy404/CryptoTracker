@@ -108,7 +108,6 @@ export default function TransactionList() {
 
     const getSortIcon = (columnName) => {
         if (sortConfig.key !== columnName) {
-            // Retornamos un span vacío del mismo tamaño para evitar que la tabla "brinque"
             return <span style={{width: '16px', display:'inline-block'}}></span>;
         }
         return sortConfig.direction === 'asc' ? <HiArrowSmUp size={16} /> : <HiArrowSmDown size={16} />;

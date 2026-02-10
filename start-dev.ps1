@@ -12,7 +12,7 @@ $BackendPath = ".\backend"
 $FrontendPath = ".\frontend"
 
 # 3. Iniciar Spring Boot en una ventana nueva
-Write-Host "☕ Lanzando Spring Boot Backend (./mvnw spring-boot:run)..." -ForegroundColor Yellow
+Write-Host "Lanzando Spring Boot Backend (./mvnw spring-boot:run)..." -ForegroundColor Yellow
 $backendProcess = Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd $BackendPath; ./mvnw spring-boot:run" -PassThru
 
 # 4. Iniciar Astro Frontend en una ventana nueva
