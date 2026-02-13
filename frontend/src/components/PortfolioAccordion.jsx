@@ -40,11 +40,18 @@ export default function PortfolioAccordion() {
 
   useEffect(() => {
     fetchTransactions();
-    window.addEventListener('transaction-added', fetchTransactions);
-    window.addEventListener('transaction-deleted', fetchTransactions);
+
+    //Cleaner
+    const reloadData = () => {
+        fetchTransactions();
+    }
+
+
+    window.addEventListener('transaction-added', reloadData);
+    window.addEventListener('transaction-deleted', reloadData);
     return () => {
-        window.removeEventListener('transaction-added', fetchTransactions);
-        window.removeEventListener('transaction-deleted', fetchTransactions);
+        window.removeEventListener('transaction-added', reloadData);
+        window.removeEventListener('transaction-deleted', reloadData);
     };
   }, []);
 

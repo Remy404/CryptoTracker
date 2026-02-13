@@ -36,7 +36,7 @@ if ($frontendProcess) {
 }
 
 # Detener Docker (Opcional - Si quieres ahorrar RAM)
-Write-Host "¿Quieres detener la base de datos también? (S/N)" -ForegroundColor Cyan
+Write-Host " ¿Quieres detener la base de datos también? (S/N)" -ForegroundColor Cyan
 $response = Read-Host
 if ($response -eq 'S' -or $response -eq 's') {
     docker stop crypto-db
